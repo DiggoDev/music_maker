@@ -1,0 +1,6 @@
+.DS_Store
+dist/
+published/
+node_modules/
+thumbs.db
+.idea/

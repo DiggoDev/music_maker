@@ -1,0 +1,90 @@
+{
+    "name": "music_maker",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "./dist/main/main.js",
+    "scripts": {
+        "start": "npm run start:electron",
+        "start:electron": "electron .",
+        "build": "npm run build:webpack && npm run build:electron",
+        "build:webpack": "webpack --config webpack.main.config.js && webpack --config webpack.renderer.config.js",
+        "build:electron": "electron-builder",
+        "pack": "npm run build && electron-builder --dir",
+        "dist": "npm run build && electron-builder",
+        "lint": "eslint --ext .ts,.tsx .",
+        "lint:fix": "eslint --fix --ext .ts,.tsx .",
+        "format": "prettier --write ./src"
+    },
+    "dependencies": {
+		"electron": "^24.2.0",
+        "source-map-support": "^0.5.21"
+    },
+    "devDependencies": {
+        "@types/node": "^20.1.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "@typescript-eslint/parser": "^5.59.2",
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "css-loader": "^6.7.3",
+        "electron-builder": "^23.6.0",
+        "electron-webpack": "^2.8.2",
+        "eslint": "^8.40.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "file-loader": "^6.2.0",
+        "html-loader": "^4.2.0",
+        "html-webpack-plugin": "^5.5.1",
+        "mini-css-extract-plugin": "^2.7.5",
+        "node-polyfill-webpack-plugin": "^2.0.1",
+        "prettier": "^2.8.8",
+        "style-loader": "^3.3.2",
+        "ts-loader": "^9.4.2",
+        "typescript": "^5.0.4",
+        "webpack": "^5.82.0",
+        "webpack-cli": "^5.0.2",
+        "webpack-dev-server": "^4.13.3"
+    },
+    "build": {
+        "appId": "com.diggodev.music_maker",
+        "mac": {
+            "category": "com.diggodev.music_maker.category.type"
+        },
+        "compression": "maximum",
+        "directories": {
+            "buildResources": "build"
+        },
+        "dmg": {
+            "contents": [
+                {
+                    "x": 110,
+                    "y": 150
+                },
+                {
+                    "x": 480,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb"
+            ]
+        },
+        "win": {
+            "target": "nsis"
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": true,
+            "allowElevation": true,
+            "allowToChangeInstallationDirectory": true,
+            "runAfterFinish": true
+        }
+    }
+}
