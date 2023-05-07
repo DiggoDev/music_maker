@@ -1,47 +1,45 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: './src/main/index.ts',
-        preload: './src/main/preload.ts',
+        main: './electron/main.ts',
+        preload: './electron/preload.ts',
+        renderer: './electron/renderer.ts',
     },
-    target: 'electron-main',
     mode: process.env.NODE_ENV || 'development',
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist', 'main'),
+    target: 'electron-main',
+    module: {
+    rules: [
+        {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'ts-loader',
+        },
+        },
+    ],
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js'],
     },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'ts-loader',
-                },
-            },
-        ],
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'electron-build'),
     },
     plugins: [
         new CleanWebpackPlugin(), 
         new NodePolyfillPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/main/index.html',
-            filename: 'index.html',
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'style.css',
-        }),
     ],
     devtool: 'source-map',
     optimization: {
         minimize: true,
-    }
+    },
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
 };

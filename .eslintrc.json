@@ -1,10 +1,9 @@
 {
     "extends": [
         "airbnb-typescript/base",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "plugin:@typescript-eslint/recommended"
     ],
-    "plugins": ["prettier", "import"],
+    "plugins": ["import"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "./tsconfig.json"
@@ -16,8 +15,8 @@
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "import/no-extraneous-dependencies": "off",
-        "prettier/prettier": "error",
-        "import/extensions": ["error", "ignorePackages"]
+        "@typescript-eslint/indent": "off",
+        "import/extensions": ["off"]
     },
     "ignorePatterns": ["node_modules/", "dist/", "**/*.js"]
 }

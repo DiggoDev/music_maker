@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: './src/renderer/index.ts',
+    entry: './src/electron/index.ts',
     target: 'electron-renderer',
     mode: process.env.NODE_ENV || 'development',
     output: {
