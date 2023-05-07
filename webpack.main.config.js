@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
@@ -27,9 +29,19 @@ module.exports = {
             },
         ],
     },
-    plugins: [new CleanWebpackPlugin(), new NodePolyfillPlugin()],
+    plugins: [
+        new CleanWebpackPlugin(), 
+        new NodePolyfillPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/main/index.html',
+            filename: 'index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
+        }),
+    ],
     devtool: 'source-map',
     optimization: {
         minimize: true,
-    },
+    }
 };

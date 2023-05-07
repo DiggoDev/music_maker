@@ -25,7 +25,7 @@ function createMainWindow() {
                   protocol: 'file:',
                   slashes: true,
               })
-            : `http://localhost:3000`,
+            : `http://localhost:3000/index.html`,
     );
 
     // Open DevTools

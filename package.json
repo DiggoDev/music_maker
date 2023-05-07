@@ -3,8 +3,12 @@
     "version": "0.0.1",
     "license": "MIT",
     "main": "./dist/main/main.js",
+    "author": {
+        "name": "Diggodev"
+    },
     "scripts": {
         "start": "npm run start:electron",
+        "start:server": "serve dist",
         "start:electron": "electron .",
         "build": "npm run build:webpack && npm run build:electron",
         "build:webpack": "webpack --config webpack.main.config.js && webpack --config webpack.renderer.config.js",
@@ -16,7 +20,6 @@
         "format": "prettier --write ./src"
     },
     "dependencies": {
-		"electron": "^24.2.0",
         "source-map-support": "^0.5.21"
     },
     "devDependencies": {
@@ -26,6 +29,7 @@
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.3",
+        "electron": "^24.2.0",
         "electron-builder": "^23.6.0",
         "electron-webpack": "^2.8.2",
         "eslint": "^8.40.0",
@@ -40,6 +44,7 @@
         "mini-css-extract-plugin": "^2.7.5",
         "node-polyfill-webpack-plugin": "^2.0.1",
         "prettier": "^2.8.8",
+        "serve": "^14.2.0",
         "style-loader": "^3.3.2",
         "ts-loader": "^9.4.2",
         "typescript": "^5.0.4",
